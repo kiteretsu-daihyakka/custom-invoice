@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    $("#idForm").click(function(e) {
+    $('#invoiceForm').submit(function(e) {
+        e.preventDefault();
         if (validateForm()){
             console.log('Hello');
             return false;
         }
         data = {}
-        e.preventDefault();
         name = $('[name=item]').serialize();
         name = decodeURI(name)
         price = $('[name=price]').serialize();
@@ -30,7 +30,8 @@ $(document).ready(function(){
                 link.href=window.URL.createObjectURL(new Blob(binaryData, {type: "application/pdf"}));
                 link.download="INVOICE" + plate.toUpperCase() + ".pdf";
                 link.click();
-                window.location.replace($("#home").val());
+                // window.location.replace($("#home").val());
+                $('#invoiceForm').trigger("reset");
         }
     });
     });
